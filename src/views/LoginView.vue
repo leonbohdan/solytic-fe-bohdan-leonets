@@ -15,13 +15,13 @@ const loginOptions = ref({
   }
 });
 
-const { result, loading, error } = useQuery<{}>(LOGIN, loginOptions.value.user);
+// const { result, loading, error } = useQuery<{}>(LOGIN, loginOptions.value.user);
 </script>
 
 <template>
   <h1>Login page</h1>
 
-  <div>result - {{ result }}</div>
-  <div>loading - {{ loading }}</div>
-  <div>error - {{ error }}</div>
+  <!--  <div>result - {{ result }}</div>-->
+  <!--  <div>loading - {{ loading }}</div>-->
+  <!--  <div>error - {{ error }}</div>-->
 </template>
