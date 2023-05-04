@@ -13,8 +13,8 @@
 
 #### Technical Requirements
 
-- API: The information about the mock api to be used is given in the next page
-- Stack:
+```
+Stack:
 - Vue, Vuex
 - Typescript
 - GraphQL
@@ -24,6 +24,8 @@
 - Yarn
 - Jest
 - Cypress
+```
+
 - Add automated tests
 - Document your code
 - Publish the code in your Git repository (private repository) - Name the repository as
