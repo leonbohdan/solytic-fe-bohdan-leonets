@@ -1,27 +1,28 @@
 <script setup lang="ts">
-import { useQuery } from "@vue/apollo-composable";
-import { LOGIN } from "@/graphql/login";
 import { ref } from "vue";
+import { useLoginStore } from "@/stores/useLogin";
+
+const useLogin = useLoginStore();
 
 defineProps<{
   title?: string;
   likes?: number;
 }>();
 
-const loginOptions = ref({
+const loginUserData = ref({
   user: {
     emailAddress: "user@name.com",
     password: "passwd"
   }
 });
 
-// const { result, loading, error } = useQuery<{}>(LOGIN, loginOptions.value.user);
+// useLogin.loginUser(loginUserData.value);
 </script>
 
 <template>
   <h1>Login page</h1>
 
-  <!--  <div>result - {{ result }}</div>-->
-  <!--  <div>loading - {{ loading }}</div>-->
-  <!--  <div>error - {{ error }}</div>-->
+  <div>userData - {{ useLogin.user }}</div>
+
+  <div>loading - {{ useLogin.loginUserLoading }}</div>
 </template>

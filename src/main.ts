@@ -1,22 +1,7 @@
 import { createApp, provide, h } from "vue";
 import { createPinia } from "pinia";
 import { DefaultApolloClient } from "@vue/apollo-composable";
-import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client/core";
-
-// HTTP connection to the API
-const httpLink = createHttpLink({
-  // You should use an absolute URL here
-  uri: "https://solytic.free.beeceptor.com/login"
-});
-
-// Cache implementation
-const cache = new InMemoryCache();
-
-// Create the apollo client
-const apolloClient = new ApolloClient({
-  link: httpLink,
-  cache
-});
+import apolloClient from "@/plugins/apollo-client";
 
 import App from "@/App.vue";
 import router from "@/router";

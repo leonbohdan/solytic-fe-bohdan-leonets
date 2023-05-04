@@ -1,9 +1,7 @@
-import { ApolloClient } from "@apollo/client";
-import { HttpLink } from "@apollo/client/link/http";
-import { InMemoryCache } from "@apollo/client/cache";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client/core";
 
-const httpLink = new HttpLink({
-  uri: "https://solytic.free.beeceptor.com/login",
+const httpLink = createHttpLink({
+  uri: "https://solytic.free.beeceptor.com/loginUser",
   headers: {
     Authorization: "Bearer",
     "Api-Key": "93f78ce7-5728-4010-b741-a628d1e4f425"
