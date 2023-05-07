@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
+import { useRouter } from "vue-router";
 import { useLoginStore } from "@/stores/useLogin";
 import { useValidation } from "@/composables/useValidation";
 
+const router = useRouter();
 const useLogin = useLoginStore();
 const { emailValidationRule, passwordValidationRule } = useValidation();
 
-const isShowPassword = ref(false);
+const isShowPassword = ref<boolean>(false);
 
 const loginUserData = ref({
   user: {
@@ -15,14 +17,21 @@ const loginUserData = ref({
   }
 });
 
-// useLogin.loginUser(loginUserData.value);
-
 const createNewAccount = () => {
   alert("Create new account");
 };
 
+watch(
+  () => useLogin.userId,
+  (userId) => {
+    if (userId) {
+      router.push({ name: "details" });
+    }
+  }
+);
+
 const handleUserLogin = () => {
-  console.log("handleUserLogin", loginUserData.value.user);
+  useLogin.loginUser(loginUserData.value);
 };
 
 const hintEmailMessage = computed(() => {

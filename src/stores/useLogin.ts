@@ -1,6 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-import { useMutation } from "@vue/apollo-composable";
+import { useMutation, provideApolloClient } from "@vue/apollo-composable";
 import { LOGIN } from "@/graphql/login";
+import apolloClient from "@/plugins/apollo-client";
 
 interface State {
   user: UserInterface | null;
@@ -38,9 +39,11 @@ export const useLoginStore = defineStore("useLoginStore", {
 
   actions: {
     async loginUser(userData: object) {
+      provideApolloClient(apolloClient);
+
       this.loginUserLoading = true;
 
-      const { mutate: sendLoginRequest, onDone, onError } = useMutation(LOGIN, userData);
+      const { mutate: sendLoginRequest, onDone, onError } = useMutation(LOGIN);
 
       onError((error) => {
         console.error("onError error", error);
