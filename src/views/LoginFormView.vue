@@ -3,6 +3,7 @@ import { ref, computed, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useLoginStore } from "@/stores/useLogin";
 import { useValidation } from "@/composables/useValidation";
+import { RULE } from "@/constants/rules";
 
 const router = useRouter();
 const useLogin = useLoginStore();
@@ -80,8 +81,12 @@ const isDisabledLoginButton = computed(() => {
             ]"
           >
             <span
-              data-test="validation-email-summary"
-              :class="['text-red-700', { invisible: !hintEmailMessage }]"
+              :data-test-rule-indicator="RULE.IsEmail"
+              :class="[
+                'text-red-700',
+                { invisible: hintEmailMessage.isValid },
+                `email-hint__rule--${hintEmailMessage.isValid ? 'pass' : 'fail'}`
+              ]"
             >
               {{ hintEmailMessage.message }}
             </span>
@@ -123,8 +128,12 @@ const isDisabledLoginButton = computed(() => {
             ]"
           >
             <span
-              data-test="validation-password-summary"
-              :class="['text-red-700', { invisible: !hintPasswordMessage }]"
+              :data-test-rule-indicator="RULE.LongerThan8"
+              :class="[
+                'text-red-700',
+                { invisible: hintPasswordMessage.isValid },
+                `password-hint__rule--${hintPasswordMessage.isValid ? 'pass' : 'fail'}`
+              ]"
             >
               {{ hintPasswordMessage.message }}
             </span>
